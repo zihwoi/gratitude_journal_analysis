@@ -7,6 +7,10 @@ from gratitude_phrases import positive_phrases, neutral_phrases, negative_phrase
 # Initialize Faker
 fake = Faker()
 
+# Specify the data directory
+data_directory = r'C:\Users\zihwoi\Documents\GitHub\gratitude_journal_analysis\data'
+os.makedirs(data_directory, exist_ok=True)
+    
 # Generate synthetic gratitude entries
 def generate_gratitude_entries(num_entries):
     data = {
@@ -17,7 +21,9 @@ def generate_gratitude_entries(num_entries):
     }
 
     used_gratitudes = set()  # To keep track of used gratitude entries
-
+    max_attempts = 1000  # Max attempts to find unique entries
+    attempts = 0
+    
     while len(data['Gratitude']) < num_entries:
         sentiment_type = random.choice(['positive', 'neutral', 'negative'])
         
@@ -35,11 +41,15 @@ def generate_gratitude_entries(num_entries):
             data['Date'].append(fake.date_this_year())  # Generate a random date
             data['Name'].append(fake.name())  # Generate a random name
             data['Sentiment'].append(sentiment_type)  # Record sentiment type
+            
+            # Check if you've reached the required number of entries
+            if len(data['Gratitude']) >= num_entries:
+                break
 
     return pd.DataFrame(data)
 
 # Specify the number of entries to generate
-num_entries = 100
+num_entries = 250
 data_directory = r'C:\Users\zihwoi\Documents\GitHub\gratitude_journal_analysis\data'
 
 # Ensure the data directory exists
@@ -65,5 +75,5 @@ while True:
 new_gratitude_df = generate_gratitude_entries(num_entries)
 
 # Save the new entries to the unique file
-new_gratitude_df.to_csv(csv_file_path, index=False)
+new_gratitude_df.to_csv(csv_file_path, index=False, encoding='utf-8-sig')
 print(f'Generated {num_entries} gratitude entries and saved to {csv_file_path}.')
