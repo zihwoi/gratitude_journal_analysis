@@ -1,17 +1,54 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+from textblob import TextBlob
+import os
 
-# Load the data
-df = pd.read_csv('gratitude_entries.csv')
+# Load the dataset
+csv_file_path = os.path.join('..', 'data', 'gratitude_entries.csv')
+data = pd.read_csv(csv_file_path)
 
-# Display the first few rows of the data
-print(df.head())
+# Basic statistics on sentiment
+sentiment_counts = data['Sentiment'].value_counts()
+sentiment_percentage = data['Sentiment'].value_counts(normalize=True) * 100
 
-# Basic statistics
-print(df.describe())
+print("Sentiment Counts:")
+print(sentiment_counts)
+print("\nSentiment Percentage:")
+print(sentiment_percentage)
 
-# Count entries by date
-entries_by_date = df['Date'].value_counts()
-print(entries_by_date)
+# Convert 'Date' to datetime
+data['Date'] = pd.to_datetime(data['Date'])
 
-# Save the analysis results if needed
-entries_by_date.to_csv('entries_by_date.csv')
+# Group by month and count entries
+monthly_trends = data.resample('ME', on='Date').count()
+
+# Plotting the trend
+plt.figure(figsize=(12, 6))
+plt.plot(monthly_trends.index, monthly_trends['Gratitude'], marker='o')
+plt.title('Monthly Gratitude Entries')
+plt.xlabel('Date')
+plt.ylabel('Number of Entries')
+plt.grid()
+plt.xticks(rotation=45)
+plt.show()
+
+# Function to get sentiment polarity
+def analyze_sentiment(entry):
+    return TextBlob(entry).sentiment.polarity
+
+# Apply sentiment analysis to gratitude entries
+data['Polarity'] = data['Gratitude'].apply(analyze_sentiment)
+
+# Check correlation between sentiment and date
+correlation = data[['Date', 'Polarity']].groupby('Date').mean().reset_index()
+print(correlation)
+
+# Optional: Visualize sentiment over time
+plt.figure(figsize=(12, 6))
+plt.plot(correlation['Date'], correlation['Polarity'], marker='o')
+plt.title('Average Sentiment Polarity Over Time')
+plt.xlabel('Date')
+plt.ylabel('Average Polarity')
+plt.grid()
+plt.xticks(rotation=45)
+plt.show()
