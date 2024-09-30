@@ -2,3 +2,4 @@ pandas
 matplotlib
 textblob
 Faker
+nltk
