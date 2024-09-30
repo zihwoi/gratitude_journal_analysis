@@ -10,3 +10,4 @@ venv/
 
 # Ignore generated data files
 data/*.csv
+
