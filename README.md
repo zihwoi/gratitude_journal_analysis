@@ -1,4 +1,4 @@
-# Gratitude Journal Data Analysis
+# Gratitude Journal Data Analysis 🌱
 
 ## Project Overview
 This project analyzes gratitude journal entries to uncover common gratitude themes, sentiment (positive, neutral, negative), and patterns in word usage. Through text analysis, the project aims to provide insights into the emotions and expressions shared in journal entries, promoting mental well-being and positive reflection. The dataset currently uses synthetic data to simulate gratitude journal entries, with analysis performed using Python data analysis libraries.
