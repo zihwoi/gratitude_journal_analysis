@@ -30,7 +30,7 @@ You need to have Python installed on your system along with the following Python
 You can install the required libraries using:
 ```bash
 pip install pandas numpy matplotlib textblob wordcloud faker nltk
-
+```
 
 This will output the word cloud, bar chart, and sentiment analysis of the gratitude journal entries.
 
@@ -55,6 +55,7 @@ cd gratitude-journal-analysis
 Run the main analysis script:
 ```bash
 python src/advanced_analysis.py
+```
 
 ## Future Improvements
 
