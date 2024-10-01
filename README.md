@@ -55,13 +55,14 @@ The monthly sentiment breakdown allows us to track emotional well-being over tim
 The analysis also produces sentiment metrics (polarity and subjectivity) for each journal entry, which can be printed or saved to a CSV file for further exploration.
 
 
-Running the Project
-```bash
+## Running the Project
 Clone this repository:
+```bash
 git clone https://github.com/your-username/gratitude-journal-analysis.git
 cd gratitude-journal-analysis
+```
 
-Run the main analysis script:
+## Run the main analysis script:
 ```bash
 python src/advanced_analysis.py
 ```
