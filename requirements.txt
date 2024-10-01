@@ -1,3 +1,11 @@
+Installing NLTK Dependencies
+Before running the project, you’ll also need to download some NLTK data packages:
+
+```bash
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
 pandas
 matplotlib
 textblob
