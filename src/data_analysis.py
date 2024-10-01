@@ -53,7 +53,7 @@ plt.grid()
 plt.xticks(rotation=45)
 plt.show()
 
-sentiment_trends = data.groupby([pd.Grouper(key='Date', freq='M'), 'Sentiment']).size().unstack().fillna(0)
+sentiment_trends = data.groupby([pd.Grouper(key='Date', freq='ME'), 'Sentiment']).size().unstack().fillna(0)
 sentiment_trends.plot(kind='line', stacked=True, figsize=(12, 6))
 plt.title('Monthly Sentiment Breakdown')
 plt.xlabel('Date')

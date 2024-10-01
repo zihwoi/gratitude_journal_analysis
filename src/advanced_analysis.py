@@ -7,6 +7,9 @@ from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
 from textblob import TextBlob
 
+# Create a word cloud of the most common words
+from wordcloud import WordCloud
+
 # Ensure NLTK dependencies are downloaded
 nltk.download('punkt_tab')
 nltk.download('stopwords')
@@ -59,4 +62,19 @@ plt.title('Top 10 Most Common Words in Gratitude Entries')
 plt.xlabel('Words')
 plt.ylabel('Frequency')
 plt.xticks(rotation=45)
+plt.show()
+
+
+# Generate and display the word cloud
+# Combine all words into a single string
+all_text = ' '.join(all_words)
+
+# Create a word cloud
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
+
+# Display the word cloud
+plt.figure(figsize=(10, 6))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')  # Hide axes
+plt.title('Word Cloud of Most Common Words')
 plt.show()
